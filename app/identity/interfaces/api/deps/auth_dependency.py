@@ -2,7 +2,7 @@ from fastapi import Depends, HTTPException
 from sqlalchemy.orm import Session
 from fastapi.security import HTTPAuthorizationCredentials, HTTPBearer
 
-from app.shared.infrastructure.databases.session import get_db
+from app.shared.infrastructure.databases.dependencies import get_db
 from app.shared.infrastructure.config.settings import settings
 
 from app.identity.infrastructure.security.jwt.jwt_service import JWTService
@@ -22,7 +22,7 @@ def get_current_user(
 ) -> UserModel:
     token = credentials.credentials
     try:
-        payload = jwt_service.decode_token(token)
+        payload = jwt_service.decode_access_token(token)
         email: str = payload.get("sub")
         if email is None:
             raise HTTPException(status_code=401, detail="Invalid token")

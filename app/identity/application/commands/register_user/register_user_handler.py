@@ -3,6 +3,7 @@ import uuid
 from app.identity.domain.entities.users import User
 from app.identity.domain.repositories.user_repository_interface import UserRepositoryInterface
 from app.identity.domain.services.password_hasher_interface import PasswordHasherInterface
+from app.identity.domain.value_objects.user_id import UserId
 from .register_user_command import RegisterUserCommand
 from .register_user_result import RegisterUserResult
 
@@ -19,10 +20,10 @@ class RegisterUserHandler:
         existing_user = self.user_repository.find_by_email(command.email)
         if existing_user:
             raise Exception("Email already in use")
-
-        hashed_password = self.password_hasher.hash(command.password)
+    
+        hashed_password = self.password_hasher.hash(command.password.value)
         new_user = self.user_repository.save(
-            User(id=uuid.uuid4(), email=command.email, hashed_password=hashed_password)
+            User(id=UserId(str(uuid.uuid4())).value, email=command.email, hashed_password=hashed_password)
         )
 
         return RegisterUserResult(id=new_user.id, email=new_user.email)

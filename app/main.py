@@ -2,7 +2,7 @@ from fastapi import FastAPI
 
 from app.shared.infrastructure.config.settings import settings
 from app.shared.infrastructure.web.exception_handlers import register_exception_handlers
-from app.identity.interfaces.api.routers.auth_router import router as auth_router
+from app.identity.interfaces.api.routers.auth_router import privateRouter, publicRouter
 
 app = FastAPI(
     title=settings.APP_NAME,
@@ -10,7 +10,12 @@ app = FastAPI(
 
 app.include_router(
     prefix="/api/v1",
-    router=auth_router,
+    router=privateRouter,
+)
+
+app.include_router(
+    prefix="/api/v1",
+    router=publicRouter,
 )
 
 register_exception_handlers(app)

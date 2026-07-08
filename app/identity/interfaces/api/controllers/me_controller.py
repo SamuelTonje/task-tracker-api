@@ -1,4 +1,4 @@
-from fastapi import Depends
+from fastapi import Depends, HTTPException
 
 from app.identity.interfaces.api.deps.auth_dependency import get_current_user
 

@@ -1,6 +1,7 @@
 from fastapi import Depends, HTTPException
 from sqlalchemy.orm import Session
 
+from app.identity.domain.value_objects.password import Password
 from app.shared.infrastructure.databases.dependencies import get_db
 from app.identity.interfaces.api.schemas.register_request import RegisterRequest
 
@@ -17,7 +18,7 @@ def register(request: RegisterRequest, db: Session = Depends(get_db)):
 
         command = RegisterUserCommand(
             email=request.email,
-            password=request.password,
+            password=Password(request.password),
         )
 
         handler = RegisterUserHandler(user_repository, password_hasher)
