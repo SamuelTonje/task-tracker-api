@@ -7,6 +7,7 @@ from alembic import context
 
 from app.shared.infrastructure.databases.base import Base
 from app.identity.infrastructure.persistence.sqlalchemy.models.user_model import UserModel
+from app.task.infrastructure.persistence.sqlalchemy.models.task_model import TaskModel
 from app.shared.infrastructure.config.settings import settings
 
 # this is the Alembic Config object, which provides

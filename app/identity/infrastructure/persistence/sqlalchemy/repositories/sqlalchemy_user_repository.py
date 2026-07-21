@@ -11,7 +11,7 @@ class SQLAlchemyUserRepository(UserRepositoryInterface):
         self.db = db
 
     def find(self, id: UserId) -> User | None:
-        user_model = self.db.query(UserModel).filter(UserModel.id == id.value).first()
+        user_model = self.db.query(UserModel).filter(UserModel.id == id).first()
         
         if user_model:
             return UserMapper.to_entity(user_model)

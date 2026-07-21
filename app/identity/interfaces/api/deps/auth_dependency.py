@@ -27,7 +27,7 @@ def get_current_user(
         if email is None:
             raise HTTPException(status_code=401, detail="Invalid token")
     except Exception as e:
-        raise HTTPException(status_code=401, detail="Invalid token") from e
+        raise HTTPException(status_code=401, detail=f"Invalid token: {str(token)}") from e
 
     user = db.query(UserModel).filter(UserModel.email == email).first()
     if user is None:

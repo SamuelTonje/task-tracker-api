@@ -1,8 +1,8 @@
 from uuid import UUID
 
 class UserId:
-    def __init__(self, value: str):
-        self.value = str(UUID(value))
+    def __init__(self, value: UUID | str):
+        self.value = value if isinstance(value, UUID) else UUID(value)
 
     def __str__(self):
         return self.value
