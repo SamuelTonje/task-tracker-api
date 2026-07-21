@@ -1,6 +1,6 @@
 from sqlalchemy.orm import Session
 
-from app.identity.domain.entities.users import User
+from app.identity.domain.entities.user import User
 from app.identity.domain.repositories.user_repository_interface import UserRepositoryInterface
 from app.identity.domain.value_objects.user_id import UserId
 from app.identity.infrastructure.persistence.sqlalchemy.models.user_model import UserModel

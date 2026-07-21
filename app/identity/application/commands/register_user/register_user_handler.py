@@ -1,6 +1,6 @@
 import uuid
 
-from app.identity.domain.entities.users import User
+from app.identity.domain.entities.user import User
 from app.identity.domain.repositories.user_repository_interface import UserRepositoryInterface
 from app.identity.domain.services.password_hasher_interface import PasswordHasherInterface
 from app.identity.domain.value_objects.user_id import UserId

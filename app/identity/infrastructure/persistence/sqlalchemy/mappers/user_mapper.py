@@ -1,4 +1,4 @@
-from app.identity.domain.entities.users import User
+from app.identity.domain.entities.user import User
 from app.identity.infrastructure.persistence.sqlalchemy.models.user_model import UserModel
 
 class UserMapper:
