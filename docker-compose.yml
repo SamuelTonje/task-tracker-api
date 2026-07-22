@@ -6,6 +6,8 @@ services:
       context: .
       dockerfile: docker/python/Dockerfile
     container_name: task_api
+    volumes:
+      - ./app:/app/app
     expose:
       - "8000"
     depends_on:

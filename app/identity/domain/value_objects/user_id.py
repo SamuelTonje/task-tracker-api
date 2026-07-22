@@ -1,6 +1,6 @@
 from uuid import UUID
 
-class TaskId:
+class UserId:
     def __init__(self, value: UUID | str):
         self.value = value if isinstance(value, UUID) else UUID(value)
 
